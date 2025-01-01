@@ -1,0 +1,76 @@
+<app-navbar></app-navbar>
+<app-loader></app-loader>
+<div class="slider flex overflow-hidden gap-5 px-4 py-8 relative top-[100px] max-w-[1380px] mx-auto">
+  <button (click)="moveSlide('left')" class="slider-arrow left-arrow absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-sky-400 bg-opacity-50 hover:bg-opacity-70 rounded-full p-2">
+    <i class="bx bx-chevron-left text-white text-3xl"></i>
+  </button>
+
+  <div class="slide scale-img flex-shrink-0 snap-center transition-transform duration-500 ease-in-out">
+    <img class="w-60 h-[400px] object-cover rounded-lg" src="/images/bumble.jpg" alt="Slide 1">
+  </div>
+  <div class="slide scale-img flex-shrink-0 snap-center transition-transform duration-500 ease-in-out">
+    <img class="w-60 h-[400px] object-cover rounded-lg" src="/images/coming10.jpg" alt="Slide 2">
+  </div>
+  <div class="slide scale-img flex-shrink-0 snap-center transition-transform duration-500 ease-in-out">
+    <img class="w-60 h-[400px] object-cover rounded-lg" src="/images/coming6.jpeg" alt="Slide 3">
+  </div>
+  <div class="slide scale-img flex-shrink-0 snap-center transition-transform duration-500 ease-in-out">
+    <img class="w-60 h-[400px] object-cover rounded-lg" src="/images/coming8.jpg" alt="Slide 4">
+  </div>
+  <div class="slide scale-img flex-shrink-0 snap-center transition-transform duration-500 ease-in-out">
+    <img class="w-60 h-[400px] object-cover rounded-lg" src="/images/coming9.jpg" alt="Slide 5">
+  </div>
+  <div class="slide scale-img flex-shrink-0 snap-center transition-transform duration-500 ease-in-out">
+    <img class="w-60 h-[400px] object-cover rounded-lg" src="/images/m3.jpg" alt="Slide 6">
+  </div>
+  <div class="slide scale-img flex-shrink-0 snap-center transition-transform duration-500 ease-in-out">
+    <img class="w-60 h-[400px] object-cover rounded-lg" src="/images/m4.jpg" alt="Slide 7">
+  </div>
+  <div class="slide scale-img flex-shrink-0 snap-center transition-transform duration-500 ease-in-out">
+    <img class="w-60 h-[400px] object-cover rounded-lg" src="/images/m5.jpg" alt="Slide 8">
+  </div>
+  <div class="slide scale-img flex-shrink-0 snap-center transition-transform duration-500 ease-in-out">
+    <img class="w-60 h-[400px] object-cover rounded-lg" src="/images/m6.jpg" alt="Slide 9">
+  </div>
+  <div class="slide scale-img flex-shrink-0 snap-center transition-transform duration-500 ease-in-out">
+    <img class="w-60 h-[400px] object-cover rounded-lg" src="/images/m7.jpg" alt="Slide 10">
+  </div>
+
+  <button (click)="moveSlide('right')" class="slider-arrow right-arrow absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-sky-400 bg-opacity-50 hover:bg-opacity-70 rounded-full p-2">
+    <i class="bx bx-chevron-right text-white text-3xl"></i>
+  </button>
+</div>
+
+
+
+
+<div class="container relative top-[150px] pl-[40px]">
+  <h1 class="popular-heading mb-[20px] text-[30px] text-[white]">popular movies</h1>
+  <div class="popular grid grid-cols-5">
+    <div class="movie" *ngFor="let movie of moviescontainer " >
+      <img
+        class="cursor-pointer w-[250px] rounded-lg hover:scale-110 transition-transform duration-300"
+        [src]="'https://image.tmdb.org/t/p/w500' + movie?.poster_path"
+        [alt]="movie.title"
+        [routerLink]="['/movie-detail', movie.id]"
+        >
+      <div
+        class="details pl-[5px] text-[white] bg-[#3a99d9d0] relative bottom-[110px] inline-block w-[250px] h-[112px] rounded-lg">
+        <h1
+          class="text-[20px] font-[500] pb-[3px]">{{movie.original_title}}</h1>
+        <h6 class="text-[15px] pb-[5px]">lang: {{movie.original_language}}</h6>
+        <p class="pb-[5px]">
+          <i class='bx bxs-star text-[orange] text-[20px]'></i>
+          <i class='bx bxs-star text-[orange] text-[20px]'></i>
+          <i class='bx bxs-star text-[orange] text-[20px]'></i>
+          <i class='bx bxs-star text-[orange] text-[20px]'></i>
+          <i class='bx bxs-star-half text-[orange] text-[20px]' ></i>
+        </p>
+        <span class="absolute bottom-[340px]"><i class='bx bxs-add-to-queue text-[30px] cursor-pointer' (click)="addToQueue(movie)"></i></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<router-outlet></router-outlet>

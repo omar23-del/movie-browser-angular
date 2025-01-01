@@ -1,0 +1,39 @@
+<app-navbar></app-navbar>
+<app-loader></app-loader>
+
+
+<div *ngIf="movie" class=" relative pl-[40px] pr-[40px] top-[150px] flex flex-row gap-7">
+
+  <h1 class="absolute top-[-50px] text-[white] text-[25px] font-[600]">{{ movie.title }}</h1>
+  <span class="inline-block h-[3px] w-[300px] bg-white absolute top-[-15px]"></span>
+  <img class="w-[300px] rounded-lg" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}">
+
+<div class="overview text-[white]">
+  <p class="mb-4"><strong>Overview:</strong> {{ movie.overview }}</p>
+
+  <p class="mb-4"><strong>Genres:</strong>
+    <span *ngFor="let genre of movie.genres">
+      {{ genre.name }}
+    </span>
+  </p>
+
+  <p class="mb-4"><strong>Release Date:</strong> {{ movie.release_date }}</p>
+  <p class="mb-4"><strong>Status:</strong> {{ movie.adult ? 'Adult' : 'Family' }}</p>
+  <p class="mb-4"><strong>Popularity:</strong> {{ movie.popularity }}</p>
+
+  <strong ><h3>Production Companies:</h3></strong>
+  <ul class="mb-4">
+    <li *ngFor="let company of movie.production_companies">
+      {{ company.name }} ({{ company.origin_country }})
+    </li>
+  </ul>
+
+  <strong><h3>Languages:</h3></strong>
+  <ul>
+    <li *ngFor="let language of movie.spoken_languages">
+      {{ language.name }}
+    </li>
+  </ul>
+</div>
+
+</div>
