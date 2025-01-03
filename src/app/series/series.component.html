@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+<app-loader></app-loader>
+
+<div class="container relative top-[150px] pl-[40px]">
+  <h1 class="popular-heading mb-[20px] text-[30px] text-[white]">top rated series</h1>
+  <div class="popular grid grid-cols-5">
+    <div class="movie" *ngFor="let serie of seriescontainer " >
+      <img
+        class="cursor-pointer w-[250px] rounded-lg hover:scale-110 transition-transform duration-300"
+        [src]="'https://image.tmdb.org/t/p/w500' + serie?.poster_path"
+        [alt]="serie.title"
+        [routerLink]="['/serie-setail', serie.id]"
+        >
+      <div
+        class="details pl-[5px] text-[white] bg-[#3a99d9d0] relative bottom-[110px] inline-block w-[250px] h-[112px] rounded-lg">
+        <h1
+          class="text-[20px] font-[500] pb-[3px]">{{serie.original_name}}</h1>
+        <h6 class="text-[15px] pb-[5px]">lang: {{serie.original_language}}</h6>
+        <p class="pb-[5px]">
+          <i class='bx bxs-star text-[orange] text-[20px]'></i>
+          <i class='bx bxs-star text-[orange] text-[20px]'></i>
+          <i class='bx bxs-star text-[orange] text-[20px]'></i>
+          <i class='bx bxs-star text-[orange] text-[20px]'></i>
+          <i class='bx bxs-star-half text-[orange] text-[20px]' ></i>
+        </p>
+        <span class="absolute bottom-[340px]"><i class='bx bxs-add-to-queue text-[30px] cursor-pointer'></i></span>
+      </div>
+    </div>
+  </div>
+</div>

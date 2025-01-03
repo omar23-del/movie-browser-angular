@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +13,8 @@ import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { LoaderComponent } from './loader/loader.component';
 import { LoaderService } from './loader.service';
 import { AuthInterceptor } from './interceptors/loader-interceptor';
+import { SeriesComponent } from './series/series.component';
+import { SeriesSetailComponent } from './series-setail/series-setail.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +24,14 @@ import { AuthInterceptor } from './interceptors/loader-interceptor';
     MainPageComponent,
     MovieDetailComponent,
     LoaderComponent,
+    SeriesComponent,
+    SeriesSetailComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CommonModule
   ],
   providers: [
     {

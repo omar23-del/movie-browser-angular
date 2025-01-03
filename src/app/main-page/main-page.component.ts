@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MoviesServiceService } from '../movies-service.service';
 import { Movies } from '../interfaces/movies';
-import { QueueService } from '../queue-service.service';
+import { PopularMovies } from '../interfaces/popular-movies';
 
 @Component({
   selector: 'app-main-page',
@@ -12,19 +12,17 @@ import { QueueService } from '../queue-service.service';
 })
 export class MainPageComponent implements OnInit, OnDestroy {
   moviescontainer: Movies[] = [];
+  popularcontainer: PopularMovies[] = []
   cancelrequest!: Subscription;
   currentIndex: number = 0;
-  movies: Movies[] = [];
 
-  constructor(private moviesservice: MoviesServiceService, private queueService: QueueService) {}
+  constructor(private moviesservice: MoviesServiceService) {}
 
   getmovies() {
     this.cancelrequest = this.moviesservice.getmovies().subscribe(
       (data) => {
-        if (data && Array.isArray(data.results)) {
-          this.moviescontainer = data.results;
-        }
-        console.log(this.moviescontainer);
+          this.popularcontainer = data.results;
+        console.log(this.popularcontainer);
       },
       (error) => {
         console.log(error);
@@ -32,8 +30,21 @@ export class MainPageComponent implements OnInit, OnDestroy {
     );
   }
 
+  gettopmovies() {
+    this.cancelrequest = this.moviesservice.gettopmovies().subscribe(
+      (data) => {
+          this.moviescontainer = data.results;
+        console.log(this.moviescontainer);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  };
+
   ngOnInit() {
     this.getmovies();
+    this.gettopmovies()
   }
 
   ngOnDestroy() {
@@ -59,9 +70,5 @@ export class MainPageComponent implements OnInit, OnDestroy {
         this.currentIndex * 135
       }px)`;
     });
-  }
-
-  addToQueue(movie: Movies) {
-    this.queueService.addToQueue(movie);
   }
 }
