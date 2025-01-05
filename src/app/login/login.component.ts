@@ -17,7 +17,7 @@ export class LoginComponent {
 loginform : FormGroup = new FormGroup ({
   email: new FormControl("", [Validators.required, Validators.email]),
   password: new FormControl("", [
-    Validators.required, Validators.pattern(/^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*(),.?":{}|<>])[a-zA-Z0-9!@#$%^&*(),.?":{}|<>]{6,30}$/
+    Validators.required, Validators.pattern(/^(?=.*[0-9])(?=.*[a-zA-Zء-ي])(?=.*[!@#$%^&*(),.?":{}|<>])[a-zA-Z0-9ء-ي!@#$%^&*(),.?":{}|<>]{6,30}$/
 )
   ])
 })
@@ -26,7 +26,7 @@ constructor(private router: Router) {}
 
 submitloginform(form: FormGroup) {
 if(form.valid) {
-  this.router.navigate(['/main-page']);}
+  this.router.navigate(['/movies/main-page']);}
 }
 
 dispalypassword() {

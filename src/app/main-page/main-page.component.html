@@ -10,11 +10,11 @@
   </button>
 
   <div *ngFor="let movie of popularcontainer "
-    class="slide scale-img flex-shrink-0 snap-center transition-transform duration-500 ease-in-out">
-    <img class="w-60 h-[400px] object-cover rounded-lg"
+    class="slide flex-shrink-0 snap-center transition-transform duration-500 ease-in-out">
+    <img class="w-60 h-[400px] scale-img object-cover rounded-lg"
       [src]="'https://image.tmdb.org/t/p/w500' + movie?.poster_path"
       [alt]="movie.original_title"
-      [routerLink]="['/movie-detail', movie.id]"
+      [routerLink]="['/movies/movie-detail', movie.id]"
       >
   </div>
 
@@ -33,7 +33,7 @@
         class="cursor-pointer w-[250px] rounded-lg hover:scale-110 transition-transform duration-300"
         [src]="'https://image.tmdb.org/t/p/w500' + movie?.poster_path"
         [alt]="movie.title"
-        [routerLink]="['/movie-detail', movie.id]">
+        [routerLink]="['/movies/movie-detail', movie.id]">
       <div
         class="details pl-[5px] text-[white] bg-[#3a99d9d0] relative bottom-[110px] inline-block w-[250px] h-[112px] rounded-lg">
         <h1
