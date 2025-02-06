@@ -15,6 +15,8 @@ import { LoaderService } from './loader.service';
 import { AuthInterceptor } from './interceptors/loader-interceptor';
 import { SeriesComponent } from './series/series.component';
 import { SeriesSetailComponent } from './series-setail/series-setail.component';
+import { SearchService } from './search.service';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { SeriesSetailComponent } from './series-setail/series-setail.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [
     {
@@ -39,6 +42,7 @@ import { SeriesSetailComponent } from './series-setail/series-setail.component';
       useClass: AuthInterceptor,
       multi: true,
     },
+    SearchService
   ],
   bootstrap: [AppComponent],
 })

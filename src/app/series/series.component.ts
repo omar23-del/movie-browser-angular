@@ -21,7 +21,6 @@ export class SeriesComponent implements OnInit, OnDestroy {
     this.cancelrequest = this.moviesservice.getseries().subscribe(
       (data) => {
         this.seriescontainer = data.results;
-        console.log(this.seriescontainer);
       },
       (error) => {
         console.log(error);

@@ -28,7 +28,7 @@
   <h1 class="popular-heading mb-[20px] text-[30px] text-[white]">top rated
     movies</h1>
   <div class="popular grid grid-cols-5">
-    <div class="movie" *ngFor="let movie of moviescontainer ">
+    <div class="movie" *ngFor="let movie of filteredmovies ">
       <img
         class="cursor-pointer w-[250px] rounded-lg hover:scale-110 transition-transform duration-300"
         [src]="'https://image.tmdb.org/t/p/w500' + movie?.poster_path"

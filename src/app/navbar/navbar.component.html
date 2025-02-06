@@ -1,5 +1,5 @@
 <nav [class]="isscrolled ? 'bg-[rgba(58,154,217,0.5)]' : 'bg-[#3A9AD9]'"
-  class="navbar z-[1000] h-[70px] pl-10 pr-10 flex justify-between items-center fixed w-[100%] bg-[#3A9AD9] text-slate-50">
+  class="navbar   xl:z-[1000] h-[70px] pl-10 pr-10 flex justify-between items-center fixed w-[100%] bg-[#3A9AD9] text-slate-50">
   <div class="logo flex items-center gap-1">
     <a routerLink="/main-page" href="#"><i
         class='bx bxs-movie text-[40px]'></i></a>
@@ -18,6 +18,6 @@
     <a class="relative right-[50px]" routerLink="/watchlist">my watchlist</a>
     <input
       class="w-[200px] h-[30px] text-[20px] text-[navy] border-none outline-none rounded-2xl pl-2"
-      placeholder="search..." type="search">
+      placeholder="search..." type="search" (input)="onSearch($event)">
   </div>
 </nav>

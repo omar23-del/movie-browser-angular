@@ -3,6 +3,9 @@ import { Subscription } from 'rxjs';
 import { MoviesServiceService } from '../movies-service.service';
 import { Movies } from '../interfaces/movies';
 import { PopularMovies } from '../interfaces/popular-movies';
+import { SearchService } from '../search.service';
+import { query } from '@angular/animations';
+
 
 @Component({
   selector: 'app-main-page',
@@ -13,16 +16,18 @@ import { PopularMovies } from '../interfaces/popular-movies';
 export class MainPageComponent implements OnInit, OnDestroy {
   moviescontainer: Movies[] = [];
   popularcontainer: PopularMovies[] = []
+  filteredmovies: Movies[] = []
+  filteredpopular: PopularMovies[] = []
   cancelrequest!: Subscription;
   currentIndex: number = 0;
+  searchsubscription!: Subscription
 
-  constructor(private moviesservice: MoviesServiceService) {}
+  constructor(private moviesservice: MoviesServiceService, private searchservice: SearchService) {}
 
   getmovies() {
     this.cancelrequest = this.moviesservice.getmovies().subscribe(
       (data) => {
           this.popularcontainer = data.results;
-        console.log(this.popularcontainer);
       },
       (error) => {
         console.log(error);
@@ -34,7 +39,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
     this.cancelrequest = this.moviesservice.gettopmovies().subscribe(
       (data) => {
           this.moviescontainer = data.results;
-        console.log(this.moviescontainer);
+          this.filteredmovies = data.results
       },
       (error) => {
         console.log(error);
@@ -42,9 +47,19 @@ export class MainPageComponent implements OnInit, OnDestroy {
     );
   };
 
+
+
   ngOnInit() {
     this.getmovies();
     this.gettopmovies()
+
+    this.searchsubscription = this.searchservice.search$.subscribe(
+      (query) => {
+        this.filteredmovies = this.moviescontainer.filter(movie =>
+          movie.title?.toLocaleLowerCase().includes(query.toLocaleLowerCase())
+        )
+      }
+    )
   }
 
   ngOnDestroy() {
